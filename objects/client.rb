@@ -6,14 +6,13 @@ require_relative '../service/language'
 # Description/Explanation of Client Class
 class Client
   include Language
-  attr_reader :client
+  attr_reader :id, :first_name, :last_name, address
 
-  def initialize(clients)
-    @clients = converted_file(clients)
-    @client = {}
-    @answer = ''
-    @full_name = ''
-    @id = 0
+  def initialize(id, first_name, last_name, address)
+    @id = id
+    @first_name = first_name
+    @last_name = last_name
+    @address = address
   end
 
   def converted_file(file)

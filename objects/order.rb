@@ -8,10 +8,13 @@ require_relative '../service/language'
 # Description/Explanation of Order Class
 class Order
   include Language
-  attr_reader :orders, :books, :clients
+  attr_reader :book_id, :created_at, :client_id, :payed
 
-  def initialize(orders)
-    @orders = orders
+  def initialize(book_id, created_at, client_id, payed)
+    @book_id = book_id
+    @created_at = created_at
+    @client_id = client_id
+    @payed = payed
   end
 
   def profit

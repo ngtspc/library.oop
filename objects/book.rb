@@ -9,11 +9,16 @@ require 'time'
 class Book
   include Language
   attr_reader :books
+  
 
-  def initialize(books)
-    @books = converted_file(books)
-    @book = {}
-    @choice = ''
+  def initialize(id, name, written_date, created_at, updated_at, author_id, price)
+    @id = id
+    @name = name
+    @written_date = written_date
+    @created_at = created_at
+    @updated_at = updated_at
+    @author_id = author_id
+    @price = price
   end
 
   def wrong_input_check

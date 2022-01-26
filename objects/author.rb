@@ -6,8 +6,10 @@ require_relative '../service/file_handler'
 class Author
   attr_reader :authors
 
-  def initialize(authors)
-    @authors = converted_file(authors)
+  def initialize(first_name, last_name, book_id)
+    @first_name = first_name
+    @last_name = last_name
+    @book_id = book_id
   end
 
   def converted_file(authors)
