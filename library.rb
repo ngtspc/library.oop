@@ -7,9 +7,11 @@ require_relative './service/file_handler'
 require_relative './objects/author'
 require_relative './objects/book'
 require_relative './objects/client'
+require_relative './service/object_creator'
 
 # Description/Explanation of Author Class
 class Library
+  extend ObjectCreator
   include Language
   attr_reader :books, :authors, :clients, :orders
 
@@ -17,15 +19,13 @@ class Library
     @books = []
     @authors = []
     @clients = []
-    @rating = ''
+    @rating = []
     @orders = []
   end
 
-  def get_collections(name)
+  def get_collections(name, &block)
     file = FileHandler.new(name).parse_file
-    file.each do |object|
-      yield object
-    end
+    file.each(&block)
   end
 
   def parse_books
@@ -60,6 +60,7 @@ class Library
                           object['address'])
       @clients.push(entity)
     end
+    @clients
   end
 
   def parse_orders
@@ -72,20 +73,67 @@ class Library
     end
     @orders
   end
-#################################################################################
+
+  def list
+    @authors.each(&:authors_list)
+    p phrases_list[:choose_author]
+    choice = gets.chomp
+  end
+
+  def load_files
+    @authors = parse_authors
+    @books = parse_books
+    @clients = parse_clients
+    @orders = parse_orders
+  end
+
+  def client_info
+    p phrases_list[:new_client]
+    answer = gets.chomp
+    until answer == phrases_list[:yes] || answer == phrases_list[:no]
+      p "That's not the anwser we've expected. Let's try once again"
+      answer = gets.chomp
+    end
+    if answer == phrases_list[:yes]
+      p created_client = Client.new_client(clients = @clients)
+      file = FileHandler.new('clients').parse_file
+      file.push(created_client)
+      FileHandler.new('clients').write_file(file)
+      client = Client.new(created_client['id'], created_client['first_name'], created_client['last_name'], created_client['address'])
+    elsif answer == phrases_list[:no]
+      p phrases_list[:enter_details]
+      full_name = gets.chomp
+      client = Client.locate_client(clients = @clients, full_name)
+    end
+    client
+  end
+
+  def write_order(book, client)
+    order = Order.new_order(book, client)
+    file = FileHandler.new('orders').parse_file
+    file.push(order)
+    FileHandler.new('orders').write_file(file)
+    puts phrases_list[:payment_accepted]
+  end
+
   def buy_book
-    @authors.authors_list
-    book = @books.wrong_input_check
-    @books.book_info
-    @books.payment_actions
-    client = @clients.info
-    @orders.new_order(book, client)
+    load_files
+    choice = Author.authors_list(authors = @authors)
+    book = Book.buy_book(choice, books = @books)
+    client = client_info
+    write_order(book, client)
   end
 
   def command_converter(input)
     input = input.split('-')
     input.delete_at(0) if input.size > 1
     input.join('')
+  end
+
+  def add_entity(file_name, new_entity)
+    file = FileHandler.new(file_name).parse_file
+    file.push(new_entity)
+    FileHandler.new(file_name).write_file(file)
   end
 
   def run
@@ -96,28 +144,45 @@ class Library
       print phrases_list[:command]
       input = gets.chomp
       command = command_converter(input)
-      ntimes = input.to_i
+      n_times = input.to_i
       if command == COMMANDS[0]
-        @authors.authors_list
-      elsif command == COMMANDS[1]
         buy_book
+      elsif command == COMMANDS[1]
+        @orders = parse_orders
+        Order.profit(orders = @orders)
       elsif command == COMMANDS[2]
-        @orders.profit
+        @orders = parse_orders
+        @books = parse_books
+        top_ids = Order.books_rate(n_times, orders = @orders, books = @books)
       elsif command == COMMANDS[3]
-        @rating.top_books(ntimes)
+        @orders = parse_orders
+        @authors = parse_authors
+        top_ids = Order.authors_rate(n_times, orders = @orders, authors = @authors)
       elsif command == COMMANDS[4]
-        @rating.top_authors(ntimes)
+        @orders = parse_orders
+        @clients = parse_clients
+        top_ids = Order.clients_rate(n_times, orders = @orders, clients = @clients)
       elsif command == COMMANDS[5]
-        @rating.top_clients(ntimes)
+        pp @books = parse_books
       elsif command == COMMANDS[6]
-        pp @books
+        pp @authors = parse_authors
       elsif command == COMMANDS[7]
-        pp @authors
+        pp @clients = parse_clients
       elsif command == COMMANDS[8]
-        pp @clients
+        pp @orders = parse_orders
       elsif command == COMMANDS[9]
-        pp @orders
+        new_book = Book.add_book('book')
+        add_entity('books', new_book)
       elsif command == COMMANDS[10]
+        new_author = Author.add_author('author')
+        add_entity('authors', new_author)
+      elsif command == COMMANDS[11]
+        new_client = Client.add_client('client')
+        add_entity('clients', new_client)
+      elsif command == COMMANDS[12]
+        new_order = Order.add_order('order')
+        add_entity('orders', new_order)
+      elsif command == COMMANDS[13]
         return
       else
         puts phrases_list[:invalid_command]
@@ -126,5 +191,5 @@ class Library
   end
 end
 
-library = Library.new()
-pp library.parse_orders
+library = Library.new
+library.run

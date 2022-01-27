@@ -1,3 +1,140 @@
 [
-
+  {
+    "book_id": "3",
+    "created_at": "2021-12-17",
+    "client_id": "1",
+    "payed": "65"
+  },
+  {
+    "book_id": "6",
+    "created_at": "2022-01-03",
+    "client_id": "1",
+    "payed": "80"
+  },
+  {
+    "book_id": "3",
+    "created_at": "2022-01-04",
+    "client_id": "1",
+    "payed": "65"
+  },
+  {
+    "book_id": "5",
+    "created_at": "2022-01-04",
+    "client_id": "2",
+    "payed": "110"
+  },
+  {
+    "book_id": "6",
+    "created_at": "2022-01-04",
+    "client_id": "2",
+    "payed": "80"
+  },
+  {
+    "book_id": "8",
+    "created_at": "2022-01-04",
+    "client_id": "3",
+    "payed": "80"
+  },
+  {
+    "book_id": "3",
+    "created_at": "2022-01-04",
+    "client_id": "1",
+    "payed": "65"
+  },
+  {
+    "book_id": "3",
+    "created_at": "2022-01-04",
+    "client_id": "4",
+    "payed": "65"
+  },
+  {
+    "book_id": "3",
+    "created_at": "2022-01-06",
+    "client_id": "2",
+    "payed": "65"
+  },
+  {
+    "book_id": "4",
+    "created_at": "2022-01-06",
+    "client_id": "4",
+    "payed": "100"
+  },
+  {
+    "book_id": "4",
+    "created_at": "2022-01-06",
+    "client_id": "4",
+    "payed": "100"
+  },
+  {
+    "book_id": "7",
+    "created_at": "2022-01-06",
+    "client_id": "5",
+    "payed": "70"
+  },
+  {
+    "book_id": "5",
+    "created_at": "2022-01-06",
+    "client_id": "5",
+    "payed": "110"
+  },
+  {
+    "book_id": "100",
+    "created_at": "2021-01-27",
+    "client_id": "50",
+    "payed": "50"
+  },
+  {
+    "book_id": "3",
+    "created_at": "2022-01-27",
+    "client_id": "1",
+    "payed": "65"
+  },
+  {
+    "book_id": "4",
+    "created_at": "2022-01-27",
+    "client_id": "28",
+    "payed": "100"
+  },
+  {
+    "book_id": "4",
+    "created_at": "2022-01-27",
+    "client_id": "29",
+    "payed": "100"
+  },
+  {
+    "book_id": "4",
+    "created_at": "2022-01-28",
+    "client_id": "1",
+    "payed": "100"
+  },
+  {
+    "book_id": "4",
+    "created_at": "2022-01-28",
+    "client_id": "4",
+    "payed": "100"
+  },
+  {
+    "book_id": "4",
+    "created_at": "2022-01-28",
+    "client_id": "1",
+    "payed": "100"
+  },
+  {
+    "book_id": "7",
+    "created_at": "2022-01-28",
+    "client_id": "34",
+    "payed": "70"
+  },
+  {
+    "book_id": "4",
+    "created_at": "2022-01-28",
+    "client_id": "4",
+    "payed": "100"
+  },
+  {
+    "book_id": "10",
+    "created_at": "2021-01-27",
+    "client_id": "2021-01-27",
+    "payed": "2021-01-27"
+  }
 ]

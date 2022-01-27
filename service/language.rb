@@ -1,16 +1,19 @@
-module Language
+# frozen_string_literal: true
 
+# Description/Explanation of Language module
+module Language
   @@language = :en
 
-  LANGUAGES = [:en, :ru]
-  
-  COMMANDS = %w[get_list buy_book profit top_books top_authors top_clients show_books show_authors show_clients show_orders exit]
+  LANGUAGES = %i[en ru].freeze
+
+  COMMANDS = %w[ buy_book profit top_books top_authors top_clients show_books show_authors show_clients
+                 show_orders add_book add_author add_client add_order exit ].freeze
 
   TEXTS = {
     en: {
       get_list: 'Here are the list of commands you can use here:',
       greeting: 'Welcome to our books shop',
-      info:  'Please enter your info',
+      info: 'Please enter your info',
       enter_name: 'Your first name: ',
       enter_surname: 'Your last name: ',
       enter_address: 'Your address: ',
@@ -49,14 +52,14 @@ module Language
       command: 'Сценарий: ',
       buy: 'Купить'
     }
-  }
+  }.freeze
 
   def choose_version
     puts 'Please enter "en" for english language/Пожалуйста введите "ru" для русского языка:'
     @@language = gets.chomp.to_sym
     unless LANGUAGES.include?(@@language)
       puts 'Please choose ":en" or ":ru" '
-    @@language = gets.chomp.to_sym
+      @@language = gets.chomp.to_sym
     end
     @@language
   end

@@ -2,7 +2,7 @@
 
 require 'json'
 
-# Description/Explanation of FileHandler Class
+# Description/Explanation of FileHandler сlass
 class FileHandler
   attr_accessor :file_path
 
@@ -19,11 +19,11 @@ class FileHandler
   end
 
   def parse_file
+    database = []
     if File.exist?("./json_files/#{@file_path}.json")
       file = File.read("./json_files/#{@file_path}.json")
       JSON.parse(file)
     else
-      database = []
       write_file(database)
     end
   end

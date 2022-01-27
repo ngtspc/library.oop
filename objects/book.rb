@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative '../service/file_handler'
 require_relative '../service/language'
 require 'date'
 require 'time'
+require_relative '../service/object_creator'
 
 # Description/Explanation of Book class
 class Book
-  include Language
-  attr_reader :books
-  
+  extend ObjectCreator
+  extend Language
+  attr_reader :id, :name, :written_date, :created_at, :updated_at, :author_id, :price
 
   def initialize(id, name, written_date, created_at, updated_at, author_id, price)
     @id = id
@@ -21,29 +21,23 @@ class Book
     @price = price
   end
 
-  def wrong_input_check
-    print phrases_list[:choose_author]
-    @choice = gets.chomp.to_i
-    @book = load_book
-    until @book
-      p phrases_list[:double_check]
-      @choice = gets.chomp.to_i
-      @book = load_book
+  def self.buy_book(choice, books)
+    book = books.find { |book| book.id == choice }
+    p phrases_list[:book_info]
+    p "Name: #{book.name}"
+    p "ID: #{book.id}"
+    p "Price: #{book.price}"
+    p 'Do you wish to buy a book?'
+    choice = gets.chomp
+    case choice.downcase
+    when 'buy'
+      book
+    else
+      p 'Please choose your author:'
+      choice = gets.chomp
+      buy_book(choice, books)
     end
-    @book
-  end
-
-  def load_book
-    @books.find { |book| book['author_id'] == @choice }
-  end
-
-  def book_info
-    puts phrases_list[:book]
-    p "Name: #{@book['name']}"
-    p "ID: #{@book['id']}"
-    p "Written date: #{@book['written_date']}"
-    p "Price: #{@book['price']}"
-    puts phrases_list[:confirm_payment]
+    book
   end
 
   def payment_actions
@@ -55,14 +49,7 @@ class Book
     end
   end
 
-  def converted_file(books)
-    books.each do |hash|
-      hash['id'] = hash['id'].to_i
-      hash['written_date'] = DateTime.parse(hash['written_date'])
-      hash['created_at'] = DateTime.parse(hash['created_at'])
-      hash['update_at'] = DateTime.parse(hash['updated_at'])
-      hash['author_id'] = hash['author_id'].to_i
-      hash['price'] = hash['price'].to_i
-    end
+  def self.add_book(file_name)
+    create_file(file_name)
   end
 end
