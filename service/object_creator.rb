@@ -32,7 +32,7 @@ module ObjectCreator
       last_name = gets.chomp
       p phrases_list[:book_id]
       book_id = gets.chomp
-      attribute = { '
+      attribute = {
         'first_name' => first_name,
         'last_name' => last_name,
         'book_id' => book_id 
