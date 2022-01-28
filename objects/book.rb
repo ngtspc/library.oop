@@ -1,11 +1,8 @@
-# frozen_string_literal: true
-
-require_relative '../service/language'
 require 'date'
 require 'time'
 require_relative '../service/object_creator'
+require_relative '../service/language'
 
-# Description/Explanation of Book class
 class Book
   extend ObjectCreator
   extend Language
@@ -42,7 +39,7 @@ class Book
 
   def payment_actions
     @confirm = gets.chomp
-    while @confirm != phrases_list[:buy]
+    while @confirm.downcase != phrases_list[:buy]
       wrong_input_check
       book_info
       @confirm = gets.chomp

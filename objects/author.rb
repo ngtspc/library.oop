@@ -1,10 +1,6 @@
-# frozen_string_literal: true
-
-# require_relative '../service/file_handler'
 require_relative '../service/language'
 require_relative '../service/object_creator'
 
-# Description/Explanation of Author class
 class Author
   extend ObjectCreator
   extend Language
@@ -22,7 +18,7 @@ class Author
     end
     p phrases_list[:choose_author]
     choice = gets.chomp
-    until choice.to_i > 0 && choice.to_i < 8
+    until choice.to_i.positive? && authors.max_by(&:book_id)
       p 'please double-check your input'
       choice = gets.chomp
     end

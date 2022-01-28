@@ -1,9 +1,6 @@
-# frozen_string_literal: true
-
 require_relative '../service/language'
 require_relative '../service/object_creator'
 
-# Description/Explanation of Client сlass
 class Client
   extend ObjectCreator
   extend Language

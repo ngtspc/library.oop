@@ -1,12 +1,8 @@
-# frozen_string_literal: true
-
-require_relative 'book'
 require_relative 'book'
 require_relative '../service/language'
 require_relative '../service/rating'
 require_relative '../service/object_creator'
 
-# Description/Explanation of Order сlass
 class Order
   extend ObjectCreator
   extend Language
@@ -22,6 +18,7 @@ class Order
   end
 
   def self.profit(orders)
+    pp orders.length
     profit = orders.map { |order| order.payed.to_i }.sum
     puts "#{phrases_list[:profit]} #{profit}$"
   end
@@ -37,18 +34,15 @@ class Order
   end
 
   def self.books_rate(n_times, orders, books)
-    top_ids = top_ids(n_times, orders, 'book_id')
-    top_books(n_times, orders, books, top_ids)
+    top_n(n_times, orders, 'book_id', books, 'id') { |id, index, top_entities| p "#{index + 1}. #{top_entities.name}, book id:#{top_entities.id}" }
   end
 
   def self.authors_rate(n_times, orders, authors)
-    top_ids = top_ids(n_times, orders, 'book_id')
-    top_authors(n_times, orders, authors, top_ids)
+    top_n(n_times, orders, 'book_id', authors, 'book_id') { |id, index, top_entities| p "#{index + 1}. #{top_entities.first_name} #{top_entities.last_name}" }
   end
 
   def self.clients_rate(n_times, orders, clients)
-    top_ids = top_ids(n_times, orders, 'client_id')
-    top_clients(n_times, orders, clients, top_ids)
+    top_n(n_times, orders, 'client_id', clients, 'id') { |id, index, top_entities| p "#{index + 1}. #{top_entities.first_name} #{top_entities.last_name}"} 
   end
 
   def self.add_order(file_name)
