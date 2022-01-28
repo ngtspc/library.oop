@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative './objects/order'
 require_relative './service/rating'
 require_relative './service/language'
@@ -8,11 +6,12 @@ require_relative './objects/author'
 require_relative './objects/book'
 require_relative './objects/client'
 require_relative './service/object_creator'
+require_relative './service/library_helper'
 
-# Description/Explanation of Author Class
 class Library
   extend ObjectCreator
   include Language
+  include LibraryHelper
   attr_reader :books, :authors, :clients, :orders
 
   def initialize
@@ -74,12 +73,6 @@ class Library
     @orders
   end
 
-  def list
-    @authors.each(&:authors_list)
-    p phrases_list[:choose_author]
-    choice = gets.chomp
-  end
-
   def load_files
     @authors = parse_authors
     @books = parse_books
@@ -89,13 +82,13 @@ class Library
 
   def client_info
     p phrases_list[:new_client]
-    answer = gets.chomp
+    answer = gets.chomp.downcase
     until answer == phrases_list[:yes] || answer == phrases_list[:no]
       p "That's not the anwser we've expected. Let's try once again"
       answer = gets.chomp
     end
     if answer == phrases_list[:yes]
-      p created_client = Client.new_client(clients = @clients)
+      created_client = Client.new_client(clients = @clients)
       file = FileHandler.new('clients').parse_file
       file.push(created_client)
       FileHandler.new('clients').write_file(file)
@@ -124,11 +117,6 @@ class Library
     write_order(book, client)
   end
 
-  def command_converter(input)
-    input = input.split('-')
-    input.delete_at(0) if input.size > 1
-    input.join('')
-  end
 
   def add_entity(file_name, new_entity)
     file = FileHandler.new(file_name).parse_file
@@ -137,6 +125,10 @@ class Library
   end
 
   def run
+    parse_authors
+    parse_books
+    parse_clients
+    parse_orders
     choose_version
     greeting
     loop do
@@ -148,28 +140,21 @@ class Library
       if command == COMMANDS[0]
         buy_book
       elsif command == COMMANDS[1]
-        @orders = parse_orders
         Order.profit(orders = @orders)
       elsif command == COMMANDS[2]
-        @orders = parse_orders
-        @books = parse_books
         top_ids = Order.books_rate(n_times, orders = @orders, books = @books)
       elsif command == COMMANDS[3]
-        @orders = parse_orders
-        @authors = parse_authors
         top_ids = Order.authors_rate(n_times, orders = @orders, authors = @authors)
       elsif command == COMMANDS[4]
-        @orders = parse_orders
-        @clients = parse_clients
         top_ids = Order.clients_rate(n_times, orders = @orders, clients = @clients)
       elsif command == COMMANDS[5]
-        pp @books = parse_books
+        pp @books
       elsif command == COMMANDS[6]
-        pp @authors = parse_authors
+        pp @authors
       elsif command == COMMANDS[7]
-        pp @clients = parse_clients
+        pp @clients
       elsif command == COMMANDS[8]
-        pp @orders = parse_orders
+        pp @orders
       elsif command == COMMANDS[9]
         new_book = Book.add_book('book')
         add_entity('books', new_book)
@@ -190,6 +175,3 @@ class Library
     end
   end
 end
-
-library = Library.new
-library.run
