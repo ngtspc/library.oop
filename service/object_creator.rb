@@ -16,13 +16,15 @@ module ObjectCreator
       author_id = gets.chomp
       p phrases_list[:key_price]
       price = gets.chomp
-      attribute = { 'id' => id,
-                    'name' => name,
-                    'written_date' => written_date,
-                    'created_at' => created_at,
-                    'updated_at' => updated_at,
-                    'author_id' => author_id,
-                    'price' => price }
+      attribute = { 
+        'id' => id,
+        'name' => name,
+        'written_date' => written_date,
+        'created_at' => created_at,
+        'updated_at' => updated_at,
+        'author_id' => author_id,
+        'price' => price 
+      }
     when 'author'
       p phrases_list[:enter_name]
       first_name = gets.chomp
@@ -30,9 +32,11 @@ module ObjectCreator
       last_name = gets.chomp
       p phrases_list[:book_id]
       book_id = gets.chomp
-      attribute = { 'first_name' => first_name,
-                    'last_name' => last_name,
-                    'book_id' => book_id }
+      attribute = { '
+        'first_name' => first_name,
+        'last_name' => last_name,
+        'book_id' => book_id 
+      }
     when 'client'
       p phrases_list[:id]
       id = gets.chomp
@@ -42,10 +46,12 @@ module ObjectCreator
       last_name = gets.chomp
       p phrases_list[:address]
       address = gets.chomp
-      attribute = { 'id' => id.to_i,
-                    'first_name' => first_name,
-                    'last_name' => last_name,
-                    'address' => address }
+      attribute = { 
+        'id' => id.to_i,
+        'first_name' => first_name,
+        'last_name' => last_name,
+        'address' => address 
+      }
     when 'order'
       p phrases_list[key_book_id]
       book_id = gets.chomp
@@ -55,10 +61,12 @@ module ObjectCreator
       client_id = gets.chomp
       p phrases_list[:key_payed]
       payed = gets.chomp
-      attribute = { 'book_id' => book_id,
-                    'created_at' => created_at,
-                    'client_id' => client_id,
-                    'payed' => payed }
+      attribute = { 
+        'book_id' => book_id,
+        'created_at' => created_at,
+        'client_id' => client_id,
+        'payed' => payed 
+      }
     end
     p phrases_list[:file_created]
     attribute
