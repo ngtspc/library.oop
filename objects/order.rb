@@ -42,7 +42,7 @@ class Order
   end
 
   def self.clients_rate(n_times, orders, clients)
-    top_n(n_times, orders, 'client_id', clients, 'id') { |id, index, top_entities| p "#{index + 1}. #{top_entities.first_name} #{top_entities.last_name}"} 
+    top_n(n_times, orders, 'client_id', clients, 'id') { |id, index, top_entities| p "#{index + 1}. #{top_entities.first_name} #{top_entities.last_name}" } 
   end
 
   def self.add_order(file_name)
