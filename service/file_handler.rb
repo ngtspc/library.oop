@@ -1,8 +1,5 @@
-# frozen_string_literal: true
-
 require 'json'
 
-# Description/Explanation of FileHandler сlass
 class FileHandler
   attr_accessor :file_path
 

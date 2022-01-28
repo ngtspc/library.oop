@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# Description/Explanation of Language module
 module Language
   @@language = :en
 
@@ -14,8 +11,8 @@ module Language
       get_list: 'Here are the list of commands you can use here:',
       greeting: 'Welcome to our books shop',
       info: 'Please enter your info',
-      enter_name: 'Your first name: ',
-      enter_surname: 'Your last name: ',
+      enter_name: 'Enter first name: ',
+      enter_surname: 'Enter last name: ',
       enter_address: 'Your address: ',
       choose_author: 'Please choose the number of the author: ',
       double_check: 'Please double-check your choice',
@@ -26,17 +23,29 @@ module Language
       payment_accepted: 'Thank you for the payment',
       profit: 'Total profit of the shop: ',
       invalid_command: 'Please choose a comand from the list',
-      yes: 'Yes',
-      no: 'No',
+      yes: 'yes',
+      no: 'no',
       command: 'Command: ',
-      buy: 'Buy'
+      buy: 'buy',
+      key_id: 'Please enter id: ',
+      key_name: 'Please enter name: ',
+      key_written_date: 'Please enter date of writing: ',
+      key_created_at: 'Please enter date of creation: ',
+      key_updated_at: 'Please enter updated_at: ',
+      key_author_id: 'Please enter author_id: ',
+      key_price: 'Please enter price: ',
+      key_book_id: 'Please enter book id: ',
+      key_address: 'Please enter address: ',
+      key_client_id: 'Please enter client_id: ',
+      key_payed: 'Please enter payed: ',
+      file_created: 'File has been created'
     },
     ru: {
       get_list: 'Вы можете использовать список команд предоставленный ниже:',
       greeting: 'Добро пожаловать в наш книжный магазин',
       info: 'Пожалуйста, заполните далее поля для создание вашей анкеты',
-      enter_name: 'Ваше имя: ',
-      enter_surname: 'Ваша фамилия: ',
+      enter_name: 'Введите имя: ',
+      enter_surname: 'Введите фамилию: ',
       enter_address: 'Ваш адрес проживания: ',
       choose_author: 'Пожалуйста, выберите номер автора: ',
       double_check: 'Пожалуйста, перепроверьте ваш выбор',
@@ -47,10 +56,22 @@ module Language
       payment_accepted: 'Платёж прошёл успешно! Спасибо за покупку!',
       profit: 'Общая прибыль магазина составляет ',
       invalid_command: 'Пожалуйста, выберите команду из списка',
-      yes: 'Да',
-      no: 'Нет',
+      yes: 'да',
+      no: 'нет',
       command: 'Сценарий: ',
-      buy: 'Купить'
+      buy: 'купить',
+      key_id: 'Пожалуйста ведите id: ',
+      key_name: 'Пожалуйста введите имя: ',
+      key_written_date: 'Пожаоуйста введите дату написания: ',
+      key_created_at: 'Пожалуйста введите дату создания: ',
+      key_updated_at: 'Пожалуйста введите дату обновления: ',
+      key_author_id: 'Пожалуйста введите id автора: ',
+      key_price: 'Пожалуйста введите стоимость: ',
+      key_book_id: 'Пожалуйста введите id книги: ',
+      key_address: 'Пожалуйста введите адрес: ',
+      key_client_id: 'Пожалуйста введите id клиента: ',
+      key_payed: 'Пожалуйста укажите сумму оплаты: ',
+      file_created: 'Файл был создан'
     }
   }.freeze
 

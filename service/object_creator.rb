@@ -1,23 +1,20 @@
-# frozen_string_literal: true
-
-# Description/Explanation of ObjectCreator module
 module ObjectCreator
   def create_file(file_name)
     case file_name
     when 'book'
-      p 'Please enter id: '
+      p phrases_list[:key_id]
       id = gets.chomp
-      p 'Please enter name: '
+      p phrases_list[:key_name]
       name = gets.chomp
-      p 'Please enter written_at: '
+      p phrases_list[:key_written_date]
       written_date = gets.chomp
-      p 'Please enter created_at: '
+      p phrases_list[:key_created_at]
       created_at = gets.chomp
-      p 'Please enter updated_at: '
+      p phrases_list[:key_updated_at]
       updated_at = gets.chomp
-      p 'Please enter author_id: '
+      p phrases_list[:key_author_id]
       author_id = gets.chomp
-      p 'Please enter price: '
+      p phrases_list[:key_price]
       price = gets.chomp
       attribute = { 'id' => id,
                     'name' => name,
@@ -27,43 +24,43 @@ module ObjectCreator
                     'author_id' => author_id,
                     'price' => price }
     when 'author'
-      p 'Please enter first name: '
+      p phrases_list[:enter_name]
       first_name = gets.chomp
-      p 'Please enter last name: '
+      p phrases_list[:enter_surname]
       last_name = gets.chomp
-      p 'Please enter book id: '
+      p phrases_list[:book_id]
       book_id = gets.chomp
       attribute = { 'first_name' => first_name,
                     'last_name' => last_name,
                     'book_id' => book_id }
     when 'client'
-      p 'Please enter id: '
+      p phrases_list[:id]
       id = gets.chomp
-      p 'Please enter first name: '
+      p phrases_list[:enter_name]
       first_name = gets.chomp
-      p 'Please enter last_name: '
+      p phrases_list[:enter_surname]
       last_name = gets.chomp
-      p 'Please enter address: '
+      p phrases_list[:address]
       address = gets.chomp
       attribute = { 'id' => id.to_i,
                     'first_name' => first_name,
                     'last_name' => last_name,
                     'address' => address }
     when 'order'
-      p 'Please enter book id: '
+      p phrases_list[key_book_id]
       book_id = gets.chomp
-      p 'Please enter created_at: '
+      p phrases_list[:key_created_at]
       created_at = gets.chomp
-      p 'Please enter client_id: '
+      p phrases_list[:client_id]
       client_id = gets.chomp
-      p 'Please enter payed: '
+      p phrases_list[:key_payed]
       payed = gets.chomp
       attribute = { 'book_id' => book_id,
                     'created_at' => created_at,
                     'client_id' => client_id,
                     'payed' => payed }
     end
-    p 'File has been created'
+    p phrases_list[:file_created]
     attribute
   end
 end
