@@ -1,11 +1,11 @@
-require_relative '../service/language'
-require_relative '../service/object_setter'
+require_relative '../services/language'
+require_relative '../services/object_setter'
 
 class Client
   extend ObjectSetter
   extend Language
 
-  CLIENT_ATTRIBUTES = ['book_id', 'created_at', 'client_id', 'payed']
+  ATTRIBUTES = ['book_id', 'created_at', 'client_id', 'payed']
 
   attr_reader :id, :first_name, :last_name, :address
 
@@ -31,16 +31,16 @@ class Client
     print phrases_list[:enter_address]
     address = gets.chomp
     client = {
-      'id' => id,
-      'first_name' => first_name,
-      'last_name' => last_name,
-      'address' => address
+      "id": id,
+      "first_name": first_name,
+      "last_name": last_name,
+      "address": address
     }
     clients.push(client)
     client
   end
 
-  def self.add_client
-    create_file(CLIENT_ATTRIBUTES)
+  def self.create
+    new_object(CLIENT_ATTRIBUTES)
   end
 end

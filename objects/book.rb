@@ -1,13 +1,13 @@
 require 'date'
 require 'time'
-require_relative '../service/object_setter'
-require_relative '../service/language'
+require_relative '../services/object_setter'
+require_relative '../services/language'
 
 class Book
   extend ObjectSetter
   extend Language
 
-  BOOK_ATTRIBUTES = ['id', 'name', 'written_date', 'created_at', 'updated_at', 'author_id', 'price']
+  ATTRIBUTES = ['id', 'name', 'written_date', 'created_at', 'updated_at', 'author_id', 'price']
 
   attr_reader :id, :name, :written_date, :created_at, :updated_at, :author_id, :price
 
@@ -50,6 +50,6 @@ class Book
   end
 
   def self.add_book
-    create_file(BOOK_ATTRIBUTES)
+    create(ATTRIBUTES)
   end
 end

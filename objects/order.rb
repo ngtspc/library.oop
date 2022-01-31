@@ -1,7 +1,7 @@
 require_relative 'book'
-require_relative '../service/language'
-require_relative '../service/rating'
-require_relative '../service/object_setter'
+require_relative '../services/language'
+require_relative '../services/rating'
+require_relative '../services/object_setter'
 
 class Order
   extend ObjectSetter
@@ -28,10 +28,10 @@ class Order
   def self.new_order(book, client)
     time_real = Time.new.strftime('%F')
     order = {
-      'book_id' => book.id.to_s,
-      'created_at' => time_real,
-      'client_id' => client.id.to_s,
-      'payed' => book.price.to_s
+      "book_id": book.id.to_s,
+      "created_at": time_real,
+      "client_id": client.id.to_s,
+      "payed": book.price.to_s
     }
   end
 
@@ -44,10 +44,10 @@ class Order
   end
 
   def self.clients_rate(n_times, orders, clients)
-    top_n(n_times, orders, 'client_id', clients, 'id') { |id, index, top_entities| p "#{index + 1}. #{top_entities.first_name} #{top_entities.last_name}" } 
+    top_n(n_times, orders, 'client_id', clients, 'id') { |id, index, top_entities| p "#{index + 1}. #{top_entities.first_name} #{top_entities.last_name}"} 
   end
 
-  def self.add_order
-    create_file(ORDER_ATTRIBUTES)
+  def self.create
+    new_object(ORDER_ATTRIBUTES)
   end
 end

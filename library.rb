@@ -1,12 +1,12 @@
 require_relative './objects/order'
-require_relative './service/rating'
-require_relative './service/language'
-require_relative './service/file_handler'
+require_relative './services/rating'
+require_relative './services/language'
+require_relative './services/file_handler'
 require_relative './objects/author'
 require_relative './objects/book'
 require_relative './objects/client'
-require_relative './service/object_setter'
-require_relative './service/library_helper'
+require_relative './services/object_setter'
+require_relative './services/library_helper'
 
 class Library
   extend ObjectSetter
@@ -88,7 +88,7 @@ class Library
       answer = gets.chomp
     end
     if answer == phrases_list[:yes]
-      created_client = Client.new_client(clients = @clients)
+      p created_client = Client.new_client(clients = @clients)
       file = FileHandler.new('clients').parse_file
       file.push(created_client)
       FileHandler.new('clients').write_file(file)
@@ -156,16 +156,16 @@ class Library
       elsif command == COMMANDS[8]
         pp @orders
       elsif command == COMMANDS[9]
-        new_book = Book.add_book
+        new_book = Book.create
         add_entity('books', new_book)
       elsif command == COMMANDS[10]
-        new_author = Author.add_author
+        new_author = Author.create
         add_entity('authors', new_author)
       elsif command == COMMANDS[11]
-        new_client = Client.add_client
+        new_client = Client.create
         add_entity('clients', new_client)
       elsif command == COMMANDS[12]
-        new_order = Order.add_order
+        new_order = Order.create
         add_entity('orders', new_order)
       elsif command == COMMANDS[13]
         return

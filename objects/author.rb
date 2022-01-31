@@ -1,11 +1,11 @@
-require_relative '../service/language'
-require_relative '../service/object_setter'
+require_relative '../services/language'
+require_relative '../services/object_setter'
 
 class Author
   extend ObjectSetter
   extend Language
 
-  AUTHOR_ATTRIBUTES = ['first_name', 'last_name', 'book_id']
+  ATTRIBUTES = ['first_name', 'last_name', 'book_id']
 
   attr_reader :first_name, :last_name, :book_id
 
@@ -22,13 +22,13 @@ class Author
     p phrases_list[:choose_author]
     choice = gets.chomp
     until choice.to_i.positive? && authors.max_by(&:book_id)
-      p 'please double-check your input'
+      p phrases_list[:double_check]
       choice = gets.chomp
     end
     choice
   end
 
-  def self.add_author
-    create_file(AUTHOR_ATTRIBUTES)
+  def self.create
+    new_object(ATTRIBUTES)
   end
 end
