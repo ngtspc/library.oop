@@ -5,11 +5,11 @@ require_relative './service/file_handler'
 require_relative './objects/author'
 require_relative './objects/book'
 require_relative './objects/client'
-require_relative './service/object_creator'
+require_relative './service/object_setter'
 require_relative './service/library_helper'
 
 class Library
-  extend ObjectCreator
+  extend ObjectSetter
   include Language
   include LibraryHelper
   attr_reader :books, :authors, :clients, :orders
@@ -156,16 +156,16 @@ class Library
       elsif command == COMMANDS[8]
         pp @orders
       elsif command == COMMANDS[9]
-        new_book = Book.add_book('book')
+        new_book = Book.add_book
         add_entity('books', new_book)
       elsif command == COMMANDS[10]
-        new_author = Author.add_author('author')
+        new_author = Author.add_author
         add_entity('authors', new_author)
       elsif command == COMMANDS[11]
-        new_client = Client.add_client('client')
+        new_client = Client.add_client
         add_entity('clients', new_client)
       elsif command == COMMANDS[12]
-        new_order = Order.add_order('order')
+        new_order = Order.add_order
         add_entity('orders', new_order)
       elsif command == COMMANDS[13]
         return

@@ -1,11 +1,14 @@
 require 'date'
 require 'time'
-require_relative '../service/object_creator'
+require_relative '../service/object_setter'
 require_relative '../service/language'
 
 class Book
-  extend ObjectCreator
+  extend ObjectSetter
   extend Language
+
+  BOOK_ATTRIBUTES = ['id', 'name', 'written_date', 'created_at', 'updated_at', 'author_id', 'price']
+
   attr_reader :id, :name, :written_date, :created_at, :updated_at, :author_id, :price
 
   def initialize(id, name, written_date, created_at, updated_at, author_id, price)
@@ -46,7 +49,7 @@ class Book
     end
   end
 
-  def self.add_book(file_name)
-    create_file(file_name)
+  def self.add_book
+    create_file(BOOK_ATTRIBUTES)
   end
 end

@@ -1,9 +1,12 @@
 require_relative '../service/language'
-require_relative '../service/object_creator'
+require_relative '../service/object_setter'
 
 class Client
-  extend ObjectCreator
+  extend ObjectSetter
   extend Language
+
+  CLIENT_ATTRIBUTES = ['book_id', 'created_at', 'client_id', 'payed']
+
   attr_reader :id, :first_name, :last_name, :address
 
   def initialize(id, first_name, last_name, address)
@@ -37,7 +40,7 @@ class Client
     client
   end
 
-  def self.add_client(file_name)
-    create_file(file_name)
+  def self.add_client
+    create_file(CLIENT_ATTRIBUTES)
   end
 end

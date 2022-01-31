@@ -1,9 +1,12 @@
 require_relative '../service/language'
-require_relative '../service/object_creator'
+require_relative '../service/object_setter'
 
 class Author
-  extend ObjectCreator
+  extend ObjectSetter
   extend Language
+
+  AUTHOR_ATTRIBUTES = ['first_name', 'last_name', 'book_id']
+
   attr_reader :first_name, :last_name, :book_id
 
   def initialize(first_name, last_name, book_id)
@@ -25,7 +28,7 @@ class Author
     choice
   end
 
-  def self.add_author(file_name)
-    create_file(file_name)
+  def self.add_author
+    create_file(AUTHOR_ATTRIBUTES)
   end
 end

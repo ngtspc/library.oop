@@ -27,17 +27,6 @@ module Language
       no: 'no',
       command: 'Command: ',
       buy: 'buy',
-      key_id: 'Please enter id: ',
-      key_name: 'Please enter name: ',
-      key_written_date: 'Please enter date of writing: ',
-      key_created_at: 'Please enter date of creation: ',
-      key_updated_at: 'Please enter updated_at: ',
-      key_author_id: 'Please enter author_id: ',
-      key_price: 'Please enter price: ',
-      key_book_id: 'Please enter book id: ',
-      key_address: 'Please enter address: ',
-      key_client_id: 'Please enter client_id: ',
-      key_payed: 'Please enter payed: ',
       file_created: 'File has been created'
     },
     ru: {
@@ -60,17 +49,6 @@ module Language
       no: 'нет',
       command: 'Сценарий: ',
       buy: 'купить',
-      key_id: 'Пожалуйста ведите id: ',
-      key_name: 'Пожалуйста введите имя: ',
-      key_written_date: 'Пожаоуйста введите дату написания: ',
-      key_created_at: 'Пожалуйста введите дату создания: ',
-      key_updated_at: 'Пожалуйста введите дату обновления: ',
-      key_author_id: 'Пожалуйста введите id автора: ',
-      key_price: 'Пожалуйста введите стоимость: ',
-      key_book_id: 'Пожалуйста введите id книги: ',
-      key_address: 'Пожалуйста введите адрес: ',
-      key_client_id: 'Пожалуйста введите id клиента: ',
-      key_payed: 'Пожалуйста укажите сумму оплаты: ',
       file_created: 'Файл был создан'
     }
   }.freeze

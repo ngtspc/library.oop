@@ -1,12 +1,14 @@
 require_relative 'book'
 require_relative '../service/language'
 require_relative '../service/rating'
-require_relative '../service/object_creator'
+require_relative '../service/object_setter'
 
 class Order
-  extend ObjectCreator
+  extend ObjectSetter
   extend Language
   extend Rating
+
+  ORDER_ATTRIBUTES = ['book_id', 'created_at', 'client_id', 'payed']
 
   attr_reader :book_id, :created_at, :client_id, :payed
 
@@ -45,7 +47,7 @@ class Order
     top_n(n_times, orders, 'client_id', clients, 'id') { |id, index, top_entities| p "#{index + 1}. #{top_entities.first_name} #{top_entities.last_name}"} 
   end
 
-  def self.add_order(file_name)
-    create_file(file_name)
+  def self.add_order
+    create_file(ORDER_ATTRIBUTES)
   end
 end
