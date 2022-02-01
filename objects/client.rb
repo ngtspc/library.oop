@@ -40,7 +40,26 @@ class Client
     client
   end
 
+  def self.client_info(clients = Storage.clients)
+    p phrases_list[:new_client]
+    answer = gets.chomp.downcase
+    until answer == phrases_list[:yes] || answer == phrases_list[:no]
+      p phrases_list[:double_check]
+      answer = gets.chomp
+    end
+    if answer == phrases_list[:yes]
+      p created_client = Client.new_client(clients)
+      Storage.add('clients', created_client)
+      client = Client.locate_client(clients = Storage.get_clients, "#{created_client[:first_name]} #{created_client[:last_name]}")
+    elsif answer == phrases_list[:no]
+      p phrases_list[:enter_details]
+      full_name = gets.chomp
+      client = Client.locate_client(clients = Storage.get_clients, full_name)
+    end
+    p client
+  end
+
   def self.create
-    new_object(CLIENT_ATTRIBUTES)
+    new_object(ATTRIBUTES)
   end
 end

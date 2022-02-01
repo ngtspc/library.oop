@@ -25,7 +25,15 @@ class Order
     puts "#{phrases_list[:profit]} #{profit}$"
   end
 
-  def self.new_order(book, client)
+  def self.payment_order(book, client)
+    order = order_info(book, client)
+    file = FileHandler.parse_file('orders')
+    file.push(order)
+    FileHandler.write_file('orders' ,file)
+    puts phrases_list[:payment_accepted]
+  end
+
+  def self.order_info(book, client)
     time_real = Time.new.strftime('%F')
     order = {
       "book_id": book.id.to_s,
@@ -44,7 +52,7 @@ class Order
   end
 
   def self.clients_rate(n_times, orders, clients)
-    top_n(n_times, orders, 'client_id', clients, 'id') { |id, index, top_entities| p "#{index + 1}. #{top_entities.first_name} #{top_entities.last_name}"} 
+    top_n(n_times, orders, 'client_id', clients, 'id') { |id, index, top_entities| p "#{index + 1}. #{top_entities.first_name} #{top_entities.last_name}" } 
   end
 
   def self.create

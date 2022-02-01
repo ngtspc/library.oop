@@ -21,19 +21,19 @@ class Book
     @price = price
   end
 
-  def self.buy_book(choice, books)
+  def self.choose_book(choice, books)
     book = books.find { |book| book.id == choice }
     p phrases_list[:book_info]
     p "Name: #{book.name}"
     p "ID: #{book.id}"
     p "Price: #{book.price}"
-    p 'Do you wish to buy a book?'
+    p phrases_list[:confirm_payment]
     choice = gets.chomp
     case choice.downcase
     when 'buy'
       book
     else
-      p 'Please choose your author:'
+      p phrases_list[:choose_author]
       choice = gets.chomp
       buy_book(choice, books)
     end
@@ -49,7 +49,14 @@ class Book
     end
   end
 
-  def self.add_book
-    create(ATTRIBUTES)
+  def self.create
+    new_object(ATTRIBUTES)
+  end
+
+  def self.buy_book
+    choice = Author.authors_list(Storage.get_authors)
+    book = choose_book(choice, books = Storage.get_books)
+    client = Client.client_info(Storage.get_clients)
+    Order.payment_order(book, client)
   end
 end

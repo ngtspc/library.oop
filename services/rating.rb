@@ -13,7 +13,7 @@ module Rating
     if orders.empty?
       p phrases_list[:empty_database]
     else
-      top_ids(n_times, orders, 'book_id').each_with_index do |id, index|
+      top_ids(n_times, orders, key_name).each_with_index do |id, index|
         top_entities = collection.find { |entity| entity.send("#{key_name2}").to_i == id.to_i }
         yield id, index, top_entities
       end
