@@ -1,0 +1,58 @@
+Style/FrozenStringLiteralComment:
+  Enabled: false
+  
+Style/RedundantInterpolation:
+  Description: Prefer to_s over string interpolation.
+  Enabled: false
+  
+Style/Documentation:
+  Description: Missing top-level documentation comment for
+  Enabled: false
+  
+Layout/MethodLength:
+  Description: 'Limit lines to 100 characters. (Default is 80)'
+  Max: 80
+  
+Layout/LineLength:
+  Description: Line is too long.
+  Max: 140
+  
+Style/ClassVars:
+  Description:  Replace class var with a class instance var.
+  Enabled: False
+  
+Lint/ShadowingOuterLocalVariable: 
+  Description: Shadowing outer local variable - 
+  Enabled: false
+  
+Metrics/ParameterLists:
+  Description: Avoid parameter lists longer than 'n' parameters. 
+  Enabled: false
+  
+Lint/UselessAssignment:
+  Description: Useless assignment to variable
+  Enabled: false
+  
+Metrics/ClassLength: 
+  Description: Class has too many lines.
+  Max: 180
+  
+Metrics/BlockLength:
+  Description:  Block has too many lines.
+  Max: 40
+  
+Metrics/CyclomaticComplexity:
+  Description: Cyclomatic complexity forfuncion is too high
+  Max: 25
+  
+Metrics/PerceivedComplexity:
+  Description: Cyclomatic complexity forfuncion is too high
+  Max: 25
+
+Layout/LineLength:
+  Description: Increase line length
+  Max: 160
+  
+  Lint/UnusedBlockArgument:
+  Description: Unused block argument
+  Enabled: false

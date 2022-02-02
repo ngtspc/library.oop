@@ -35,11 +35,11 @@ class Library
       elsif command == COMMANDS[1]
         Order.profit(orders = @orders)
       elsif command == COMMANDS[2]
-        top_ids = Order.books_rate(n_times, orders = @orders, books = @books)
+        Order.books_rate(n_times, orders = @orders, books = @books)
       elsif command == COMMANDS[3]
-        top_ids = Order.authors_rate(n_times, orders = @orders, authors = @authors)
+        Order.authors_rate(n_times, orders = @orders, authors = @authors)
       elsif command == COMMANDS[4]
-        top_ids = Order.clients_rate(n_times, orders = @orders, clients = @clients)
+        Order.clients_rate(n_times, orders = @orders, clients = @clients)
       elsif command == COMMANDS[5]
         pp @books
       elsif command == COMMANDS[6]
